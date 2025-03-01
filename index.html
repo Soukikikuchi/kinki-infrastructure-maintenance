@@ -3,56 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>近畿地方インフラメンテナンスポータル</title>
+    <title>近畿地方インフラメンテナンス情報ポータル</title>
     <style>
-        /* 全体のスタイル */
+        :root {
+            --primary-color: #0055a4;
+            --secondary-color: #f5f5f5;
+            --accent-color: #e63946;
+            --text-color: #333;
+            --light-text: #fff;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
         }
         
         body {
-            color: #333;
+            color: var(--text-color);
             line-height: 1.6;
-            background-color: #f8f9fa;
+            background-color: #fff;
         }
         
-        /* ヘッダー */
         header {
-            background: linear-gradient(135deg, #0055a4 0%, #0055a4 100%);
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--light-text);
             padding: 1rem 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
-            top: 0;
             z-index: 1000;
+            top: 0;
         }
         
-        .header-container {
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
         
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            display: flex;
-            align-items: center;
         }
         
-        .logo-icon {
-            margin-right: 0.5rem;
-            font-size: 1.8rem;
-        }
-        
-        /* ナビゲーション */
         nav ul {
             display: flex;
             list-style: none;
@@ -63,561 +65,367 @@
         }
         
         nav ul li a {
-            color: white;
+            color: var(--light-text);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            transition: opacity 0.3s;
         }
         
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
         }
         
-        /* メインビジュアル */
         .hero {
-            height: 70vh;
-            background: url('/api/placeholder/1200/600') center/cover no-repeat;
-            position: relative;
-            margin-top: 4rem;
+            height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            color: white;
-            text-align: center;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-text);
+            margin-top: 60px;
         }
         
         .hero-content {
-            position: relative;
-            z-index: 1;
             max-width: 800px;
-            padding: 0 2rem;
         }
         
-        .hero-content h1 {
+        .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            letter-spacing: 2px;
+            line-height: 1.2;
         }
         
-        .hero-content p {
-            font-size: 1.2rem;
+        .hero p {
+            font-size: 1.1rem;
             margin-bottom: 2rem;
         }
         
         .btn {
             display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 0.8rem 1.8rem;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 0.8rem 1.5rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: background-color 0.3s;
         }
         
         .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #c62b38;
         }
         
-        /* メインコンテンツ */
-        .container {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-        
-        section {
-            margin-bottom: 4rem;
+        .info-section {
+            padding: 5rem 0;
+            background-color: var(--secondary-color);
         }
         
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
             text-align: center;
-            position: relative;
-            padding-bottom: 0.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 100px;
-            height: 4px;
-            background-color: #3498db;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-        
-        /* カードセクション */
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
         
         .card {
-            background-color: white;
+            background-color: #fff;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
         
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
         
-        .card-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .card-img img {
+        .card img {
             width: 100%;
-            height: 100%;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.5s ease;
         }
         
-        .card:hover .card-img img {
-            transform: scale(1.05);
-        }
-        
-        .card-body {
+        .card-content {
             padding: 1.5rem;
         }
         
-        .card-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-        
-        .card-text {
+        .card h3 {
             margin-bottom: 1rem;
-            color: #7f8c8d;
+            color: var(--primary-color);
         }
         
-        /* 最新情報 */
+        .latest-news {
+            padding: 5rem 0;
+        }
+        
+        .news-items {
+            margin-top: 2rem;
+        }
+        
         .news-item {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
         }
         
         .news-date {
-            color: #7f8c8d;
+            color: #777;
             font-size: 0.9rem;
-            margin-bottom: 0.5rem;
         }
         
         .news-title {
+            margin: 0.5rem 0;
             font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
         }
         
-        /* フッター */
+        .news-title a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .news-title a:hover {
+            text-decoration: underline;
+        }
+        
         footer {
-            background-color: #2c3e50;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--light-text);
             padding: 3rem 0;
         }
         
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
         }
         
-        .footer-section h3 {
-            margin-bottom: 1rem;
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
             font-size: 1.2rem;
         }
         
-        .footer-section ul {
+        .footer-column ul {
             list-style: none;
         }
         
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
         }
         
-        .footer-section ul li a {
-            color: #ecf0f1;
+        .footer-column ul li a {
+            color: var(--light-text);
             text-decoration: none;
-            transition: all 0.3s ease;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
         
-        .footer-section ul li a:hover {
-            color: #3498db;
+        .footer-column ul li a:hover {
+            opacity: 1;
         }
         
         .copyright {
             text-align: center;
-            padding: 1rem 0;
-            background-color: #1a252f;
-            color: #ecf0f1;
-            font-size: 0.9rem;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* レスポンシブデザイン */
         @media (max-width: 768px) {
-            .header-container {
+            .header-content {
                 flex-direction: column;
-                padding: 1rem;
+                text-align: center;
             }
             
             nav ul {
                 margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
             }
             
             nav ul li {
-                margin: 0.5rem;
+                margin: 0 0.5rem;
             }
             
-            .hero {
-                height: 60vh;
-            }
-            
-            .hero-content h1 {
+            .hero h1 {
                 font-size: 2rem;
             }
             
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
+            .hero {
+                height: auto;
+                padding: 5rem 0;
+                margin-top: 120px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- ヘッダー -->
     <header>
-        <div class="header-container">
-            <div class="logo">
-                <span class="logo-icon">🔧</span>
-                <span>近畿インフラメンテナンス</span>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">近畿インフラメンテナンス</div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">概要</a></li>
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#news">新着情報</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#about">概要</a></li>
-                    <li><a href="#working-groups">ワーキンググループ</a></li>
-                    <li><a href="#outsourcing">包括的民間委託</a></li>
-                    <li><a href="#forum">技術展示フォーラム</a></li>
-                    <li><a href="#other">その他</a></li>
-                    <li><a href="#contact">お問い合わせ</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <!-- メインビジュアル -->
     <section class="hero" style="background: url('./top.jpg') center/cover no-repeat;">
-        <div class="hero-content">
-            <h1>近畿地方のインフラを未来へつなぐ</h1>
-            <p>安全・安心な社会基盤を維持するための技術と知識の共有プラットフォーム</p>
-            <a href="#about" class="btn">詳しく見る</a>
-        </div>
-    </section>
-
-    <!-- メインコンテンツ -->
-    <div class="container">
-        <!-- 概要セクション -->
-        <section id="about">
-            <h2 class="section-title">近畿インフラメンテナンス事業概要</h2>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./top.jpg" alt="インフラメンテナンスの重要性">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">事業の目的</h3>
-                        <p class="card-text">急速に老朽化が進む近畿地方のインフラを効率的かつ効果的に維持管理・更新するための取り組みを推進しています。産学官の連携により、技術開発や人材育成を進め、持続可能な社会基盤の実現を目指します。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./top2.jpg" alt="取り組み内容">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">主な取り組み</h3>
-                        <p class="card-text">最新技術の導入支援、点検・診断技術の高度化、効率的な修繕・更新手法の開発、データベース構築と活用、人材育成プログラムの実施など、多角的な取り組みを展開しています。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="./top3.jpg" alt="連携体制">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">産学官の連携</h3>
-                        <p class="card-text">国、自治体、大学、研究機関、民間企業が連携し、それぞれの知見や技術を結集した総合的なインフラメンテナンス体制を構築しています。定期的な情報交換や共同研究により、実効性のある取り組みを進めています。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 最新情報 -->
-        <section>
-            <h2 class="section-title">最新情報</h2>
-            <div class="news-list">
-                <div class="news-item">
-                    <div class="news-date">2025年2月28日</div>
-                    <h3 class="news-title">第15回インフラメンテナンス技術展示フォーラムの開催について</h3>
-                    <p>3月15日（土）に大阪市内にて第15回技術展示フォーラムを開催いたします。最新の点検・診断技術のデモンストレーションや事例紹介を行います。参加申し込みは3月10日まで受け付けております。</p>
-                </div>
-                <div class="news-item">
-                    <div class="news-date">2025年2月15日</div>
-                    <h3 class="news-title">情報ワーキンググループ第3回会合の議事録を公開</h3>
-                    <p>2月10日に開催された情報ワーキンググループの第3回会合の議事録を公開しました。データベース構築に関する進捗状況や今後の展開について議論が行われました。</p>
-                </div>
-                <div class="news-item">
-                    <div class="news-date">2025年2月1日</div>
-                    <h3 class="news-title">包括的民間委託等導入事例集の公開</h3>
-                    <p>近畿地方における包括的民間委託の成功事例を集めた事例集を公開しました。各自治体の取り組み状況や効果、課題などをまとめています。ダウンロードしてご活用ください。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ワーキンググループ -->
-        <section id="working-groups">
-            <h2 class="section-title">情報ワーキンググループ</h2>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="情報ワーキンググループ">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">活動目的</h3>
-                        <p class="card-text">インフラ維持管理に関する情報の収集・整理・分析・共有を行い、効率的なメンテナンスサイクルの確立を支援します。点検・診断データの標準化や活用方法の検討、先進事例の収集などを行っています。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="情報プラットフォーム">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">情報プラットフォーム構築</h3>
-                        <p class="card-text">近畿地方のインフラ維持管理に関する情報を一元的に管理・共有するためのプラットフォームを構築しています。点検記録、補修履歴、技術情報などをデータベース化し、関係者間で共有できる環境を整備しています。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="情報ワーキング会合">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">定例会合</h3>
-                        <p class="card-text">毎月1回の定例会合を開催し、各機関からの情報提供や課題共有、解決策の検討を行っています。会合の議事録は随時公開しており、どなたでも閲覧いただけます。次回会合は3月10日を予定しています。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 包括的民間委託等導入グループ -->
-        <section id="outsourcing">
-            <h2 class="section-title">包括的民間委託等導入グループ</h2>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="包括的民間委託">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">民間活力の導入</h3>
-                        <p class="card-text">効率的・効果的なインフラ維持管理を実現するため、包括的民間委託の導入を推進しています。点検、診断、補修を一括して民間事業者に委託することで、コスト削減と品質向上を図ります。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="導入支援">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">導入支援プログラム</h3>
-                        <p class="card-text">自治体向けの包括的民間委託導入支援プログラムを実施しています。仕様書作成のポイントや契約方法、モニタリング手法など、円滑な導入のためのノウハウを提供します。個別相談も随時受け付けていますので、お気軽にご連絡ください。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="事例集">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">導入事例集</h3>
-                        <p class="card-text">近畿地方における包括的民間委託の導入事例を集めた事例集を公開しています。導入の経緯、契約内容、効果と課題、解決策などを詳細に解説しており、これから導入を検討する自治体の参考資料としてご活用いただけます。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 技術展示フォーラム -->
-        <section id="forum">
-            <h2 class="section-title">技術展示フォーラム</h2>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="技術展示">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">最新技術の展示</h3>
-                        <p class="card-text">年4回、近畿地方の各都市で技術展示フォーラムを開催しています。インフラ点検・診断・補修に関する最新技術や機器のデモンストレーション、実演を行い、実務担当者が直接体験できる機会を提供しています。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="事例発表">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">事例発表会</h3>
-                        <p class="card-text">先進的な取り組みを行っている自治体や民間企業による事例発表を実施しています。課題解決の手法や導入効果など、具体的な事例を共有することで、参加者の皆様の業務改善のヒントとなる情報を提供します。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="交流会">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">交流・マッチング</h3>
-                        <p class="card-text">フォーラム後には交流会を開催し、参加者同士のネットワーキングや技術提供企業とユーザーのマッチングの場を提供しています。課題や悩みを直接相談できる機会として、多くの方にご活用いただいています。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- その他 -->
-        <section id="other">
-            <h2 class="section-title">その他の取り組み</h2>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="人材育成">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">人材育成プログラム</h3>
-                        <p class="card-text">インフラメンテナンスに関わる技術者・担当者向けの研修プログラムを実施しています。基礎知識から最新技術まで、様々なレベルに対応した研修コースを用意し、専門人材の育成を支援しています。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="市民協働">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">市民協働プロジェクト</h3>
-                        <p class="card-text">インフラの日常点検や異常報告に市民の力を活用する取り組みを進めています。スマートフォンアプリを使った簡易報告システムの導入や、地域住民による点検ボランティア活動の支援など、官民連携の新たな形を模索しています。</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="/api/placeholder/400/200" alt="研究開発">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">研究開発支援</h3>
-                        <p class="card-text">インフラメンテナンスに関する新技術・新工法の研究開発を支援しています。大学や研究機関と連携した共同研究プロジェクトの推進や、実証実験フィールドの提供など、技術革新を促進するための環境整備に取り組んでいます。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- お問い合わせ -->
-    <section id="contact" style="background-color: #f1f8fe; padding: 4rem 0;">
         <div class="container">
-            <h2 class="section-title">お問い合わせ</h2>
-            <div style="max-width: 800px; margin: 0 auto; background-color: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-                <p style="text-align: center; margin-bottom: 2rem;">近畿インフラメンテナンスに関するご質問・ご相談は以下の連絡先までお気軽にお問い合わせください。</p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div>
-                        <h3 style="margin-bottom: 1rem; color: #2c3e50;">連絡先情報</h3>
-                        <p><strong>住所：</strong>大阪市中央区○○町1-2-3</p>
-                        <p><strong>電話：</strong>06-XXXX-XXXX</p>
-                        <p><strong>FAX：</strong>06-XXXX-XXXX</p>
-                        <p><strong>メール：</strong>info@kinki-infra.example.jp</p>
-                        <p><strong>受付時間：</strong>平日 9:00～17:00</p>
+            <div class="hero-content">
+                <h1>近畿地方の安全なインフラを支える<br>メンテナンスソリューション</h1>
+                <p>橋梁、道路、トンネルなど、公共インフラの点検・補修・更新を通じて、安全で持続可能な社会基盤を維持します。最新技術を駆使し、効率的かつ確実なインフラメンテナンスを提供します。</p>
+                <a href="#services" class="btn">サービス詳細を見る</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="about">
+        <div class="container">
+            <h2 class="section-title">インフラメンテナンスの重要性</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="./top1.jpg" alt="老朽化するインフラ">
+                    <div class="card-content">
+                        <h3>老朽化するインフラ</h3>
+                        <p>近畿地方では高度経済成長期に建設されたインフラが多く、老朽化による安全性の低下が課題となっています。定期的な点検と適切な補修が不可欠です。</p>
                     </div>
-                    <div>
-                        <h3 style="margin-bottom: 1rem; color: #2c3e50;">お問い合わせフォーム</h3>
-                        <p>詳細なお問い合わせはフォームをご利用ください。</p>
-                        <a href="#" class="btn" style="margin-top: 1rem; display: inline-block;">フォームへ進む</a>
+                </div>
+                <div class="card">
+                    <img src="./top2.jpg" alt="最新技術の活用">
+                    <div class="card-content">
+                        <h3>最新技術の活用</h3>
+                        <p>ドローンやAI、IoTなどの最新技術を活用し、効率的かつ高精度なインフラ点検を実現。従来の方法では困難だった箇所も安全に調査できます。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./top3.jpg" alt="予防保全の推進">
+                    <div class="card-content">
+                        <h3>予防保全の推進</h3>
+                        <p>事後対応ではなく、予防保全の考え方を導入することで、長期的なコスト削減と安全性の向上を両立。計画的なメンテナンスサイクルを確立します。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- フッター -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>近畿インフラメンテナンス</h3>
-                <p>安全・安心な社会基盤を未来へつなぐための取り組みを推進しています。</p>
-            </div>
-            <div class="footer-section">
-                <h3>関連リンク</h3>
-                <ul>
-                    <li><a href="#">国土交通省</a></li>
-                    <li><a href="#">近畿地方整備局</a></li>
-                    <li><a href="#">大阪府</a></li>
-                    <li><a href="#">京都府</a></li>
-                    <li><a href="#">兵庫県</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>活動内容</h3>
-                <ul>
-                    <li><a href="#working-groups">情報ワーキンググループ</a></li>
-                    <li><a href="#outsourcing">包括的民間委託等導入グループ</a></li>
-                    <li><a href="#forum">技術展示フォーラム</a></li>
-                    <li><a href="#other">その他の取り組み</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>お問い合わせ</h3>
-                <ul>
-                    <li><a href="#contact">連絡先情報</a></li>
-                    <li><a href="#">お問い合わせフォーム</a></li>
-                    <li><a href="#">アクセスマップ</a></li>
-                </ul>
+    <section class="info-section" id="services" style="background-color: #fff;">
+        <div class="container">
+            <h2 class="section-title">提供サービス</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="/api/placeholder/400/300" alt="点検サービス">
+                    <div class="card-content">
+                        <h3>点検サービス</h3>
+                        <p>国の基準に基づいた定期点検から緊急点検まで、多様な点検サービスを提供。橋梁、道路、トンネル、河川施設など幅広いインフラに対応します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/api/placeholder/400/300" alt="診断・評価">
+                    <div class="card-content">
+                        <h3>診断・評価</h3>
+                        <p>点検結果に基づく専門的な診断と評価を実施。構造物の健全度を正確に判定し、適切な対策方針を提案します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/api/placeholder/400/300" alt="補修・補強設計">
+                    <div class="card-content">
+                        <h3>補修・補強設計</h3>
+                        <p>劣化状況に応じた効果的な補修・補強方法を設計。耐久性の向上と長寿命化を目指した技術提案を行います。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/api/placeholder/400/300" alt="維持管理計画">
+                    <div class="card-content">
+                        <h3>維持管理計画</h3>
+                        <p>自治体のインフラ資産を総合的に管理するための長期計画を策定。予算制約の中で最適な維持管理方針を提案します。</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="copyright">
-            © 2025 近畿インフラメンテナンス. All Rights Reserved.
+    </section>
+
+    <section class="latest-news" id="news">
+        <div class="container">
+            <h2 class="section-title">新着情報</h2>
+            <div class="news-items">
+                <div class="news-item">
+                    <p class="news-date">2025年2月28日</p>
+                    <h3 class="news-title"><a href="#">近畿地方におけるインフラメンテナンス新技術導入セミナーを開催します</a></h3>
+                    <p>3月15日に大阪市内でインフラメンテナンスの新技術に関するセミナーを開催します。自治体担当者様向けに最新のドローン点検技術やAI診断システムをご紹介します。</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">2025年2月15日</p>
+                    <h3 class="news-title"><a href="#">橋梁点検支援システムのアップデート版をリリース</a></h3>
+                    <p>タブレット端末で簡単に操作できる橋梁点検支援システムの新バージョンをリリースしました。損傷写真の自動分類機能が追加され、現場での作業効率が大幅に向上します。</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">2025年1月30日</p>
+                    <h3 class="news-title"><a href="#">和歌山県内の自治体とインフラ包括管理協定を締結</a></h3>
+                    <p>和歌山県内の5つの自治体と包括的なインフラ管理協定を締結しました。今後5年間にわたり、道路・橋梁などの定期点検から維持管理計画の策定まで一体的にサポートします。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="#">点検サービス</a></li>
+                        <li><a href="#">診断・評価</a></li>
+                        <li><a href="#">補修・補強設計</a></li>
+                        <li><a href="#">維持管理計画</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>対象施設</h3>
+                    <ul>
+                        <li><a href="#">橋梁</a></li>
+                        <li><a href="#">道路</a></li>
+                        <li><a href="#">トンネル</a></li>
+                        <li><a href="#">河川施設</a></li>
+                        <li><a href="#">港湾施設</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>対応エリア</h3>
+                    <ul>
+                        <li><a href="#">大阪府</a></li>
+                        <li><a href="#">京都府</a></li>
+                        <li><a href="#">兵庫県</a></li>
+                        <li><a href="#">奈良県</a></li>
+                        <li><a href="#">和歌山県</a></li>
+                        <li><a href="#">滋賀県</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="#about">会社概要</a></li>
+                        <li><a href="#news">新着情報</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 近畿地方インフラメンテナンス情報ポータル All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 </body>
