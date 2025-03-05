@@ -3,695 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>近畿インフラメンテナンス オンライン展示会</title>
+    <title>インフラメンテナンス 商品紹介</title>
     <style>
         :root {
-            --primary-color: #0055a4;
+            --primary-color: #2c7bb6;
             --secondary-color: #f5f5f5;
-            --accent-color: #e63946;
-            --dark-blue: #003366;
-            --light-blue: #e6f3ff;
+            --accent-color: #1c5c8c;
             --text-color: #333;
             --light-text: #fff;
-            --gray: #6c757d;
-            --light-gray: #eeeeee;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Helvetica Neue', Arial, sans-serif;
         }
-        
+
         body {
+            background-color: var(--secondary-color);
             color: var(--text-color);
             line-height: 1.6;
-            background-color: var(--light-gray);
         }
-        
-        header {
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            top: 0;
-        }
-        
+
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 2rem 15px;
         }
-        
-        .header-content {
+
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2rem;
         }
-        
+
         .logo {
+            display: flex;
+            align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-        
-        nav ul li a {
-            color: var(--light-text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-        
-        nav ul li a:hover {
-            opacity: 0.8;
-        }
-        
-        .page-banner {
-            padding: 8rem 0 4rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
-            color: var(--light-text);
-            text-align: center;
-        }
-        
-        .page-banner h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .page-banner p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-        
-        .search-filter {
-            background-color: var(--light-text);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: -50px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 10;
-        }
-        
-        .search-filter-inner {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
-        }
-        
-        .search-box {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 0.8rem 1.2rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .filter-options {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        select {
-            padding: 0.8rem 1.2rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: white;
-            font-size: 1rem;
-            min-width: 150px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--light-text);
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: #c62b38;
-        }
-        
-        .exhibitors-section {
-            padding: 4rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 1rem;
             color: var(--primary-color);
-            font-size: 2rem;
         }
-        
-        .section-description {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            color: var(--gray);
+
+        .logo img {
+            height: 50px;
+            margin-right: 1rem;
         }
-        
-        .exhibitors-grid {
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .product-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
-        }
-        
-        .exhibitor-card {
             background-color: white;
             border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .product-image {
             position: relative;
         }
-        
-        .exhibitor-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .exhibitor-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .exhibitor-image img {
+
+        .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
         }
-        
-        .exhibitor-card:hover .exhibitor-image img {
-            transform: scale(1.05);
-        }
-        
-        .exhibitor-category {
+
+        .download-badge {
             position: absolute;
             top: 1rem;
             right: 1rem;
             background-color: var(--accent-color);
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .exhibitor-content {
-            padding: 1.5rem;
-        }
-        
-        .exhibitor-name {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        
-        .exhibitor-description {
-            margin-bottom: 1.5rem;
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-        
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .tech-tag {
-            background-color: var(--light-blue);
-            color: var(--primary-color);
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-        
-        .exhibitor-action {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .visit-btn {
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 3rem;
-            gap: 0.5rem;
-        }
-        
-        .pagination-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
-            border: 1px solid #ddd;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
-        
-        .pagination-item:hover, .pagination-item.active {
+
+        .download-badge:hover {
             background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
         }
-        
-        .featured-exhibitors {
-            background-color: var(--light-blue);
-            padding: 4rem 0;
-            margin-top: 2rem;
-        }
-        
-        .featured-exhibitor {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            .featured-exhibitor {
-                flex-direction: row;
-                height: 300px;
-            }
-        }
-        
-        .featured-image {
-            flex: 1;
-            min-height: 250px;
-        }
-        
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .featured-content {
-            flex: 1;
+
+        .product-details {
             padding: 2rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        
-        .featured-badge {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            align-self: flex-start;
-        }
-        
-        .featured-name {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+
+        .product-title {
+            font-size: 2rem;
             color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: bold;
         }
-        
-        .featured-description {
+
+        .product-description {
             margin-bottom: 1.5rem;
-            color: var(--gray);
+            color: var(--text-color);
         }
-        
-        footer {
+
+        .product-features {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            width: 30px;
+            height: 30px;
             background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 3rem 0;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
         }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
         }
-        
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-column ul li a {
-            color: var(--light-text);
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
             text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
+            font-weight: bold;
+            transition: all 0.3s;
         }
-        
-        .footer-column ul li a:hover {
-            opacity: 1;
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
         }
-        
-        .copyright {
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .recommended-booths {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+        }
+
+        .recommended-title {
             text-align: center;
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
         }
-        
+
+        .booth-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .booth-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .booth-card img {
+            max-width: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .booth-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
+            .product-showcase {
+                grid-template-columns: 1fr;
             }
-            
-            nav ul {
-                margin-top: 1rem;
-            }
-            
-            nav ul li {
-                margin: 0 0.5rem;
-            }
-            
-            .page-banner h1 {
-                font-size: 2rem;
-            }
-            
-            .search-filter-inner {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .search-box, .filter-options {
-                width: 100%;
-            }
-            
-            .filter-options {
-                flex-direction: column;
+
+            .booth-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">近畿インフラメンテナンス</div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">ホーム</a></li>
-                        <li><a href="#services">サービス</a></li>
-                        <li><a href="#news">新着情報</a></li>
-                        <li><a href="#">お問い合わせ</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <section class="page-banner">
-        <div class="container">
-            <h1>オンライン展示会 出展企業一覧</h1>
-            <p>近畿地方のインフラメンテナンスを支える最先端企業・技術をご紹介します。各企業の革新的なソリューションをオンラインでご覧いただけます。</p>
-        </div>
-    </section>
-
     <div class="container">
-        <div class="search-filter">
-            <div class="search-filter-inner">
-                <div class="search-box">
-                    <input type="text" placeholder="企業名・技術名で検索">
-                </div>
-                <div class="filter-options">
-                    <select name="category">
-                        <option value="">カテゴリー</option>
-                        <option value="inspection">点検技術</option>
-                        <option value="diagnostic">診断技術</option>
-                        <option value="repair">補修・補強技術</option>
-                        <option value="management">維持管理システム</option>
-                    </select>
-                    <select name="target">
-                        <option value="">対象構造物</option>
-                        <option value="bridge">橋梁</option>
-                        <option value="road">道路</option>
-                        <option value="tunnel">トンネル</option>
-                        <option value="river">河川施設</option>
-                    </select>
-                </div>
-                <button class="btn">検索</button>
+        <header class="header">
+            <div class="logo">
+                <img src="/api/placeholder/100/100" alt="ロゴ">
+                インフラメンテナンス
             </div>
-        </div>
+            <nav class="nav-links">
+                <a href="#">ホーム</a>
+                <a href="#">商品一覧</a>
+                <a href="#">企業情報</a>
+                <a href="#">お問い合わせ</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="product-showcase">
+                <div class="product-image">
+                    <img src="/api/placeholder/600/400" alt="コンボルト型屋外タンク貯蔵システム">
+                    <a href="#" class="download-badge">資料一括ダウンロード</a>
+                </div>
+                <div class="product-details">
+                    <h1 class="product-title">コンボルト型屋外タンク貯蔵システム</h1>
+                    <p class="product-description">
+                        耐久性及び耐腐食性を兼ね備えた屋外燃料タンク。特殊な設計により、長期間にわたる安全な燃料貯蔵を実現します。
+                    </p>
+                    <div class="product-features">
+                        <div class="feature">
+                            <div class="feature-icon">✓</div>
+                            高耐久性設計
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">✓</div>
+                            耐腐食性材料使用
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">✓</div>
+                            長期間安定した燃料貯蔵
+                        </div>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary">詳細資料請求</a>
+                        <a href="#" class="btn btn-secondary">お問い合わせ</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recommended-booths">
+                <h2 class="recommended-title">おすすめブース</h2>
+                <div class="booth-grid">
+                    <div class="booth-card">
+                        <img src="/api/placeholder/100/100" alt="古河電気工業">
+                        <h4>古河電気工業</h4>
+                        <p>インフラ関連技術</p>
+                    </div>
+                    <div class="booth-card">
+                        <img src="/api/placeholder/100/100" alt="日本海コンサルタント">
+                        <h4>日本海コンサルタント</h4>
+                        <p>インフラ診断サービス</p>
+                    </div>
+                    <div class="booth-card">
+                        <img src="/api/placeholder/100/100" alt="国際航業">
+                        <h4>国際航業</h4>
+                        <p>空間情報技術</p>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-
-    <section class="featured-exhibitors">
-        <div class="container">
-            <h2 class="section-title">注目の出展企業</h2>
-            <p class="section-description">インフラメンテナンス業界をリードする革新的な技術を持つ企業をご紹介します</p>
-            
-            <div class="featured-exhibitor">
-                <div class="featured-image">
-                    <img src="/api/placeholder/600/300" alt="テクノブリッジ株式会社">
-                </div>
-                <div class="featured-content">
-                    <span class="featured-badge">GOLD SPONSOR</span>
-                    <h3 class="featured-name">テクノブリッジ株式会社</h3>
-                    <p class="featured-description">ドローンとAIを活用した橋梁点検システムのパイオニア。従来の10分の1の時間で高精度な点検を実現し、全国の自治体から高い評価を得ています。最新のBridge Eye AIシステムでは、0.1mm以下のひび割れも検出可能になりました。</p>
-                    <a href="#" class="btn">ブースを訪問する</a>
-                </div>
-            </div>
-            
-            <div class="featured-exhibitor">
-                <div class="featured-content">
-                    <span class="featured-badge">SILVER SPONSOR</span>
-                    <h3 class="featured-name">スマートインフラ株式会社</h3>
-                    <p class="featured-description">IoTセンサーを活用したリアルタイムインフラモニタリングシステムを提供。振動、変位、温度などを常時計測し、異常を早期に検知することで予防保全を実現します。自治体向けクラウド管理システムも好評です。</p>
-                    <a href="#" class="btn">ブースを訪問する</a>
-                </div>
-                <div class="featured-image">
-                    <img src="/api/placeholder/600/300" alt="スマートインフラ株式会社">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="exhibitors-section">
-        <div class="container">
-            <h2 class="section-title">出展企業一覧</h2>
-            <p class="section-description">近畿地方を中心に全国から集まった70社以上のインフラメンテナンス関連企業が最新技術を出展しています</p>
-            
-            <div class="exhibitors-grid">
-                <div class="exhibitor-card">
-                    <div class="exhibitor-image">
-                        <img src="/api/placeholder/400/200" alt="株式会社インフラテック">
-                        <div class="exhibitor-category">点検技術</div>
-                    </div>
-                    <div class="exhibitor-content">
-                        <h3 class="exhibitor-name">株式会社インフラテック</h3>
-                        <p class="exhibitor-description">非破壊検査技術を専門とする企業。コンクリート内部の欠陥を可視化する最新の超音波探査装置を展示。</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">非破壊検査</span>
-                            <span class="tech-tag">コンクリート</span>
-                            <span class="tech-tag">超音波探査</span>
-                        </div>
-                        <div class="exhibitor-action">
-                            <a href="#" class="btn visit-btn">ブースを訪問</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="exhibitor-card">
-                    <div class="exhibitor-image">
-                        <img src="/api/placeholder/400/200" alt="橋梁メンテナンス株式会社">
-                        <div class="exhibitor-category">補修・補強技術</div>
-                    </div>
-                    <div class="exhibitor-content">
-                        <h3 class="exhibitor-name">橋梁メンテナンス株式会社</h3>
-                        <p class="exhibitor-description">橋梁の長寿命化技術を提供。新開発の炭素繊維補強材と特殊樹脂による補強工法を紹介。</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">CFRP</span>
-                            <span class="tech-tag">補強工法</span>
-                            <span class="tech-tag">橋梁</span>
-                        </div>
-                        <div class="exhibitor-action">
-                            <a href="#" class="btn visit-btn">ブースを訪問</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="exhibitor-card">
-                    <div class="exhibitor-image">
-                        <img src="/api/placeholder/400/200" alt="日本ドローンサービス">
-                        <div class="exhibitor-category">点検技術</div>
-                    </div>
-                    <div class="exhibitor-content">
-                        <h3 class="exhibitor-name">日本ドローンサービス</h3>
-                        <p class="exhibitor-description">特殊環境対応ドローンによる点検サービス。狭小空間や強風下でも安定した飛行が可能な新型機を展示。</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">ドローン</span>
-                            <span class="tech-tag">画像解析</span>
-                            <span class="tech-tag">3Dマッピング</span>
-                        </div>
-                        <div class="exhibitor-action">
-                            <a href="#" class="btn visit-btn">ブースを訪問</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="exhibitor-card">
-                    <div class="exhibitor-image">
-                        <img src="/api/placeholder/400/200" alt="関西インフラシステムズ">
-                        <div class="exhibitor-category">維持管理システム</div>
-                    </div>
-                    <div class="exhibitor-content">
-                        <h3 class="exhibitor-name">関西インフラシステムズ</h3>
-                        <p class="exhibitor-description">自治体向けインフラ資産管理クラウドシステムを提供。予算最適化AIによる長期メンテナンス計画作成も可能。</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">クラウド</span>
-                            <span class="tech-tag">アセットマネジメント</span>
-                            <span class="tech-tag">AI</span>
-                        </div>
-                        <div class="exhibitor-action">
-                            <a href="#" class="btn visit-btn">ブースを訪問</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="exhibitor-card">
-                    <div class="exhibitor-image">
-                        <img src="/api/placeholder/400/200" alt="トンネルテクノ株式会社">
-                        <div class="exhibitor-category">診断技術</div>
-                    </div>
-                    <div class="exhibitor-content">
-                        <h3 class="exhibitor-name">トンネルテクノ株式会社</h3>
-                        <p class="exhibitor-description">トンネル内部の変状を高速で計測するスキャンシステム。走行しながら3Dモデルを作成し異常箇所を自動検出。</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">レーザースキャン</span>
-                            <span class="tech-tag">トンネル</span>
-                            <span class="tech-tag">3Dモデリング</span>
-                        </div>
-                        <div class="exhibitor-action">
-                            <a href="#" class="btn visit-btn">ブースを訪問</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="exhibitor-card">
-                    <div class="exhibitor-image">
-                        <img src="/api/placeholder/400/200" alt="センサーネットワークス">
-                        <div class="exhibitor-category">点検技術</div>
-                    </div>
-                    <div class="exhibitor-content">
-                        <h3 class="exhibitor-name">センサーネットワークス</h3>
-                        <p class="exhibitor-description">無線センサーネットワークによる構造物の遠隔監視システム。電池寿命10年の超小型IoTセンサーを展示。</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">IoT</span>
-                            <span class="tech-tag">無線センサー</span>
-                            <span class="tech-tag">遠隔監視</span>
-                        </div>
-                        <div class="exhibitor-action">
-                            <a href="#" class="btn visit-btn">ブースを訪問</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pagination">
-                <a href="#" class="pagination-item active">1</a>
-                <a href="#" class="pagination-item">2</a>
-                <a href="#" class="pagination-item">3</a>
-                <a href="#" class="pagination-item">4</a>
-                <a href="#" class="pagination-item">5</a>
-                <a href="#" class="pagination-item">></a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>オンライン展示会</h3>
-                    <ul>
-                        <li><a href="#">出展企業一覧</a></li>
-                        <li><a href="#">カテゴリー別検索</a></li>
-                        <li><a href="#">お気に入り企業</a></li>
-                        <li><a href="#">企業への問い合わせ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>セミナー情報</h3>
-                    <ul>
-                        <li><a href="#">セミナースケジュール</a></li>
-                        <li><a href="#">基調講演</a></li>
-                        <li><a href="#">技術セミナー</a></li>
-                        <li><a href="#">過去のアーカイブ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>サービス</h3>
-                    <ul>
-                        <li><a href="#">企業出展について</a></li>
-                        <li><a href="#">サイト利用方法</a></li>
-                        <li><a href="#">ビジネスマッチング</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>リンク</h3>
-                    <ul>
-                        <li><a href="index.html">ホームページ</a></li>
-                        <li><a href="#">お問い合わせ</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 近畿地方インフラメンテナンス情報ポータル All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
